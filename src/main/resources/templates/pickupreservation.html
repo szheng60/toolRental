@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http:/www.thymeleaf.org">
+<head th:replace="template/commontemplate :: head"></head>
+<style>
+    /* The Modal (background) */
+    .custom-modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0, 0, 0); /* Fallback color */
+        background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+    }
+
+    /* Modal Content */
+    .custom-modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+    }
+
+    /* The Close Button */
+    .close {
+        color: #aaaaaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+</style>
+<div th:replace="template/commontemplate :: header"></div>
+<body>
+<div th:replace="template/clerktemplate :: navigation(${user})"></div>
+<input type="hidden" id="clerk_email" th:value="${clerkEmail}"></input>
+<div class="container">
+    <div>
+        <h3 id="page_title">Pickup Reservation</h3>
+    </div>
+    <div>
+        <table id="reservation_table" class="table-striped mt-3" style="border: 1px solid black;">
+            <thead>
+            <tr>
+                <th data-field="reservationId">Reservation ID</th>
+                <th data-field="customerShortName">Customer</th>
+                <th data-field="customerId">CustomerID</th>
+                <th data-field="startDate">Start Date</th>
+                <th data-field="endDate">End Date</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+    <div id="main_reservation_detail"></div>
+    <div class="row">
+        <div class="col-md-6 form-group">
+            <input id="reservation_id" type="number" class="form-control" placeholder="Enter Reservation ID"></input>
+        </div>
+        <div class="col-md-3 form-group">
+            <button id="pickup-btn" type="button" class="btn btn-primary">Pick Up</button>
+        </div>
+    </div>
+
+    <!-- The Modal -->
+    <div id="pickupconfirm-form" class="custom-modal">
+        Modal content
+        <div class="custom-modal-content">
+            <span class="close" id="close_pickup_form">&times;</span>
+            <h2 id="pickupconfirm_title">Pickup Reservation</h2>
+            <div id="reservation_detail"></div>
+            <p>Credit Card: </p>
+            <div class="form-group">
+                <!--<label  class="pr-5 form-check-label"><input class="CC form-check-input" type="radio" name="card_option1" id="existing_card" value="existing">Existing</input></label>-->
+                <!--<label  class="pr-5 form-check-label"><input class="CC form-check-input" type="radio" name="card_option2" id="new_card" value="new">New</input></label>-->
+                <label class="pr-5 form-check-label"><input type="radio" name="eorn" id="existing_card"
+                                                            class="CC form-check-input" value="h" checked="true">Existing</input>
+                </label>
+                <label class="pr-5 form-check-label"><input type="radio" name="eorn" id="new_card"
+                                                            class="CC form-check-input" value="w">New</input></label>
+            </div>
+            <div id="update_credit_card_section" class="hide">
+                <h3 class="Updatecardtitle">Enter Updated Credit Card Information</h3>
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                        <div><input type="text" id="name_on_credit_card" class="form-control"
+                                    placeholder="Name on Credit Card" required="true"></input></div>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <div><input type="text" pattern="^\d{16}$" title="enter 16 digits" id="credit_card_number"
+                                    class="form-control" placeholder="Credit Card #" required="true"></input></div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 form-group">
+                        <select name="" id="expiration_month" class="form-control required">
+                            <option value=''>Expiration Month</option>
+                            <option value='01'>January</option>
+                            <option value='02'>February</option>
+                            <option value='03'>March</option>
+                            <option value='04'>April</option>
+                            <option value='05'>May</option>
+                            <option value='06'>June</option>
+                            <option value='07'>July</option>
+                            <option value='08'>August</option>
+                            <option value='09'>September</option>
+                            <option value='10'>October</option>
+                            <option value='11'>November</option>
+                            <option value='12'>December</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <select name="" id="expiration_year" class="form-control required">
+                            <option value=''>Expiration Year</option>
+                            <option value='17'>2017</option>
+                            <option value='18'>2018</option>
+                            <option value='19'>2019</option>
+                            <option value='20'>2020</option>
+                            <option value='21'>2021</option>
+                            <option value='22'>2022</option>
+                            <option value='23'>2023</option>
+                            <option value='24'>2024</option>
+                            <option value='25'>2025</option>
+                            <option value='26'>2026</option>
+                            <option value='27'>2027</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <div><input type="text" pattern="^\d{3}$" title="enter 3 digits" id="cvc"
+                                    class="form-control" placeholder="CVC" required="true"></input></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 form-group ">
+                    <button id="update_creditcard_btn" type="button" class="btn btn-primary hide">Update Credit Card</button>
+                </div>
+                <div class="col-md-3 form-group">
+                    <button id="confirmpickup-btn" type="button" class="btn btn-primary">Confirm Pick Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- The Modal -->
+    <div id="rentalcontract" class="custom-modal">
+        Modal content
+        <div class="custom-modal-content">
+            <span class="close" id="close_rental_contract">&times;</span>
+            <h2 id="Contract_title">Pickup Reservation</h2>
+            <div id="rental_contract"></div>
+            <div>
+                <table id="reservation_tool_table" class="table-striped mt-3" style="border: 1px solid black;">
+                    <thead>
+                    <tr>
+                        <th data-field="toolId">Tool ID</th>
+                        <th data-field="shortDescription">Tool Name</th>
+                        <th data-field="depositPrice">Deposit Price</th>
+                        <th data-field="rentalPrice">Rental Price</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 class="Signature">Signatures</h3>
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <div id="signatureclerk">
+                        X_____________________________________________
+                    </div>
+                </div>
+                <div class="col-md-6 form-group">
+                    <div id="dateclerk">
+                        Date:_____________________________________________
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <div id="roleclerk">
+                        Pickup Clerk
+                    </div>
+                </div>
+                <div class="col-md-6 form-group">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <div id="signaturecustomer">
+                        X_____________________________________________
+                    </div>
+                </div>
+                <div class="col-md-6 form-group">
+                    <div id="datecustomer">
+                        Date:_____________________________________________
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <div id="rolecustomer">
+                        Customer
+                    </div>
+                </div>
+                <div class="col-md-6 form-group">
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-3 form-group">
+                    <button id="print-btn" type="button" class="btn btn-primary">Print Contract</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="tool_detail_modal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="container" style="margin-top: 150px;">
+                <div class="modal-header" style="background-color:black;">
+                    <h3 style="color: white;">Tool Details</h3>
+                </div>
+                <div class="modal-content" style="padding: 20px 20px 20px 20px;">
+                    <div>
+                        <h5>Tool ID:</h5>
+                        <span id="tool_detail_id" class="tool-report-detail"></span>
+                    </div>
+                    <div class="mt-2">
+                        <h5>Tool Type:</h5>
+                        <span id="tool_detail_type" class="tool-report-detail"></span>
+                    </div>
+                    <div class="mt-2">
+                        <h5>Short Description:</h5>
+                        <span id="tool_detail_short_description" class="tool-report-detail"></span>
+                    </div>
+                    <div class="mt-2">
+                        <h5>Full Description:</h5>
+                        <span id="tool_detail_full_description" class="tool-report-detail"></span>
+                    </div>
+                    <div class="mt-2">
+                        <h5>Tool Specification:</h5>
+                        <span id="tool_detail_specification" class="tool-report-detail"></span>
+                    </div>
+                    <div class="mt-2">
+                        <h5>Deposit Price:</h5>
+                        <span id="tool_detail_deposit_price" class="tool-report-detail"></span>
+                    </div>
+                    <div class="mt-2">
+                        <h5>Rental Price:</h5>
+                        <span id="tool_detail_rental_price" class="tool-report-detail"></span>
+                    </div>
+                    <div class="hide mt-2">
+                        <h5>Accessories:</h5>
+                        <span id="tool_detail_accessories"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" th:src="@{/js/reservation.js}"></script>
+</body>
+<div th:replace="template/commontemplate :: footer"></div>
+</html>
+

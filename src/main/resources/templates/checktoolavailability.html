@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http:/www.thymeleaf.org">
+<head th:replace="template/commontemplate :: head"></head>
+<div th:replace="template/commontemplate :: header"></div>
+<body>
+<div th:replace="template/customertemplate :: navigation(${user})"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3 form-group">
+            <div><label ><strong>Start Date</strong></label></div>
+            <input id="startDate" type="date"></input>
+        </div>
+        <div class="col-md-3 form-group">
+            <div><label ><strong>End Date</strong></label></div>
+            <input id="endDate" type="date"></input>
+        </div>
+        <!--<div class="col-md-3 form-group">-->
+            <!--<div><label ><strong>Search Keyword</strong></label></div>-->
+            <!--<input id="customSearch" type="text"></input>-->
+        <!--</div>-->
+    </div>
+    <div class="row">
+        <div class="col-md-3 form-group">
+            <div><label ><strong>Type</strong></label></div>
+            <select name="" id="tool_type" class="form-control required">
+                <option value="all">All</option>
+                <option value="Hand Tool">Hand Tools</option>
+                <option value="Garden Tool">Garden Tools</option>
+                <option value="Ladder Tool">Ladders</option>
+                <option value="Power Tool">Power Tools</option>
+            </select>
+        </div>
+        <div class="col-md-3 form-group">
+            <div><label ><strong>Sub-Type</strong></label></div>
+            <select name="" id="tool_sub_type" class="form-control required">
+                <option value="all">All</option>
+            </select>
+        </div>
+        <div class="col-md-3 form-group">
+            <div><label ><strong>Power-Source</strong></label></div>
+            <select name="" id="tool_power_source" class="form-control required">
+                <option value="all">All</option>
+                <!--<option value="electric">A/C Electric</option>-->
+                <!--<option value="cordless">D/C Cordless</option>-->
+                <!--<option value="gas">Gas</option>-->
+            </select>
+        </div>
+    </div>
+    <form action="" id="toolAvailability-form">
+        <button type="submit" class="btn btn-primary" id="check-btn">Check</button>
+    </form>
+    <table id="content" class="cell-border" cellspacing="0" width="100%">
+        <thead>
+        <tr>
+            <th data-field="toolId">Tool ID</th>
+            <th data-field="description">Description</th>
+            <th data-field="depositPrice">Deposit Price</th>
+            <th data-field="rentalPrice">Rental Price</th>
+        </tr>
+        </thead>
+    </table>
+    <div id="toolDetail"></div>
+</div>
+<script type="text/javascript" th:src="@{/js/checktoolavailability.js}"></script>
+</body>
+<div th:replace="template/commontemplate :: footer"></div>
+</html>

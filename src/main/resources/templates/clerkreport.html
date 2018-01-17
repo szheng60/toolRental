@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http:/www.thymeleaf.org">
+<head th:replace="template/commontemplate :: head"></head>
+<div th:replace="template/commontemplate :: header"></div>
+<body>
+<div th:replace="template/clerktemplate :: navigation(${user})"></div>
+<div class="container mt-5" style="height: 500px;">
+    <div class="mt-3">
+        <h3>Clerk Report</h3>
+    </div>
+    <div>
+        <span>
+            The List of clerks where their total pickups and dropoffs are shown for the past month
+        </span>
+    </div>
+    <table id="clerkTable" class="table-striped mt-3" style="border: 1px solid black;">
+        <thead>
+        <tr>
+            <th data-field="clerkId">Clerk ID</th>
+            <th data-field="firstName">First Name</th>
+            <th data-field="midName">Middle Name</th>
+            <th data-field="lastName">Last Name</th>
+            <th data-field="email">Email</th>
+            <th data-field="hireDate">Hire Date</th>
+            <th data-field="numberOfPickups">Number Of Pickups</th>
+            <th data-field="numberOfDropoffs">Number Of Dropoffs</th>
+            <th data-field="combinedTotal">Combined Total</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</div>
+<script type="text/javascript" th:src="@{/js/clerkreport.js}"></script>
+</body>
+<div th:replace="template/commontemplate :: footer"></div>
+</html>

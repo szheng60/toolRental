@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http:/www.thymeleaf.org">
+<head th:replace="template/commontemplate :: head"></head>
+<div th:replace="template/commontemplate :: header"></div>
+<body>
+<input id="email" type="text" class="hide" th:value="${email}"></input>
+<div th:replace="template/customertemplate :: navigation(${user})"></div>
+<div class="container" id="profile_section">
+    <h3 class="card-title">Customer Info</h3>
+    <div id="user_profile"></div>
+    <h3 class="card-title">Reservations</h3>
+    <table id="user_reservation" class="cell-border" cellspacing="0" width="100%">
+        <thead>
+        <tr>
+            <th data-field="reservationId">Reservation ID</th>
+            <th data-field="tools">Tools</th>
+            <th data-field="startDate">Start Date</th>
+            <th data-field="endDate">End Date</th>
+            <th data-field="pickUpClerk">Pickup Clerk</th>
+            <th data-field="dropOffClerk">Dropoff Clerk</th>
+            <th data-field="numberOfDays">Number Of Days</th>
+            <th data-field="totalDepositPrice">Total Deposit Price</th>
+            <th data-field="totalRentalPrice">Total Rental Price</th>
+        </tr>
+        </thead>
+    </table>
+</div>
+<script type="text/javascript" th:src="@{/js/profile.js}"></script>
+</body>
+<div th:replace="template/commontemplate :: footer"></div>
+</html>

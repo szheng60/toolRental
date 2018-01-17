@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http:/www.thymeleaf.org">
+<head th:replace="template/commontemplate :: head"></head>
+<div th:replace="template/commontemplate :: header"></div>
+<body>
+<div th:replace="template/clerktemplate :: navigation(${user})"></div>
+<div class="container">
+    <div class="list-group pt-5 mt-5 offset-md-3 col-md-6">
+        <a href="/clerkreport" class="list-group-item list-group-item-action">Clerk Report</a>
+
+        <a href="/customerreport" class="list-group-item list-group-item-action">Customer Report</a>
+
+        <a href="/toolreport" class="list-group-item list-group-item-action">Tool Report</a>
+    </div>
+</div>
+</body>
+<div th:replace="template/commontemplate :: footer"></div>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+    <meta charset="UTF-8"/>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{/style/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/style/bootstrap-table.min.css}"/>
+    <link rel="stylesheet" th:href="@{/style/datatables.min.css}"/>
+    <link rel="stylesheet" th:href="@{/style/style.css}"/>
+    <script type="text/javascript" th:src="@{/js/tether.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery-3.2.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap-table.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/datatables.min.js}"></script>
+</head>
+
+<div th:fragment="header">
+    <div class="jumbotron text-center mb-0">
+        <h1 class="display-3">Tool Rental</h1>
+    </div>
+
+</div>
+
+<div th:fragment="login">
+    <div class="container mt-5">
+        <form action="" id="login-form">
+            <div class="row">
+                <div class="col-md-12 mb-3">
+                    <label for="inputEmail">Email</label>
+                    <input type="email" class="form-control" id="inputEmail" placeholder="Email" required="true"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 mb-3">
+                    <label for="inputPassword">Password</label>
+                    <input type="password" class="form-control" id="inputPassword" placeholder="Password" required="true"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <fieldset class="form-group mt-2">
+                        <legend>Select a role</legend>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="roleRadios" id="customerRadio" value="1" checked="true">Customer</input>
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="roleRadios" id="clerkRadio" value="2">Clerk</input>
+                            </label>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <button type="submit" class="btn btn-primary" id="login-btn">Log In</button>
+            </div>
+        </form>
+        <div id="new_password_for_first_time" class="hide">
+            <div class="row">
+                <h2 id="new_input_password_label">Change Password Here</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-12 mb-3">
+                    <label for="inputPassword">Password</label>
+                    <input type="password" class="form-control" id="new_input_password" placeholder="Password" required="true"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 mb-3">
+                    <label for="inputPassword">Confirm Password</label>
+                    <input type="password" class="form-control" id="new_input_password_confirm" placeholder="Re-enter Password" required="true"/>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <button class="btn btn-primary" id="new_input_password_btn">Update Password</button>
+            </div>
+        </div>
+        <div id="feedback" style="color:red;"></div>
+    </div>
+</div>
+
+<div th:fragment="footer">
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">Team 46 reserves all the rights!</div>
+                <div class="col-md-3"></div>
+                <div class="col-md-3 text-right small align-self-end">©2017 Gatech.</div>
+            </div>
+        </div>
+    </footer>
+</div>
+</html>

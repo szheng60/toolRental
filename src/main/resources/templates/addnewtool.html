@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http:/www.thymeleaf.org">
+<head th:replace="template/commontemplate :: head"></head>
+<div th:replace="template/commontemplate :: header"></div>
+<body>
+<div th:replace="template/clerktemplate :: navigation(${user})"></div>
+<div class="container">
+    <a href="" id="nextUrl" hidden="true"></a>
+    <form id="add_tool_form" class="mt-5">
+    <div class="add-tool card card-block">
+        <h3 class="card-title">Add Tool</h3>
+        <div class="row form-group">
+            <label  class="pr-4 form-check-label"><strong>Type:</strong></label>
+            <label  class="pr-5 form-check-label"><input type="radio" name="tool-type" class="tool-type form-check-input" value="Hand-Tool" required="true">Hand Tool</input></label>
+            <label  class="pr-5 form-check-label"><input type="radio" name="tool-type" class="tool-type form-check-input" value="Garden-Tool">Garden Tool</input></label>
+            <label  class="pr-5 form-check-label"><input type="radio" name="tool-type" class="tool-type form-check-input" value="Ladder-Tool">Ladder</input></label>
+            <label  class="pr-5 form-check-label"><input type="radio" name="tool-type" class="tool-type form-check-input" value="Power-Tool">Power Tool</input></label>
+        </div>
+        <div class="row">
+            <div class="col-md-3 form-group">
+                <div><label ><strong>Sub-Type</strong></label></div>
+                <select name="" id="tool_sub_type" class="form-control required">
+                    <option value="0">--Select One--</option>
+                </select>
+            </div>
+            <div class="col-md-3 form-group">
+                <div><label ><strong>Sub-Option</strong></label></div>
+                <select name="" id="tool_sub_option" class="form-control required">
+                    <option value="0">--Select One--</option>
+                </select>
+            </div>
+            <div class="col-md-3 form-group">
+                <div><label ><strong>Power-Source</strong></label></div>
+                <select name="" id="tool_power_source" class="form-control required">
+                    <option value="0">--Select One--</option>
+                    <option class="power_tool hide" value="electric">Electric</option>
+                    <option class="power_tool hide" value="cordless">Cordless</option>
+                    <option class="power_tool hide" value="gas">Gas</option>
+                    <option value="manual">Manual</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 form-group">
+                <div><label ><strong>Purchase Price</strong></label></div>
+                <div><input type="number" id="tool_purchase_price" class="form-control" min="0" step="0.01" data-number-to-fixed="2" placeholder="0.0" required="true"></input></div>
+            </div>
+            <div class="col-md-3 form-group">
+                <div><label ><strong>Manufacturer</strong></label></div>
+                <div><input type="text" id="tool_manufacturer" class="form-control" placeholder="Enter tool manufacturer" required="true"></input></div>
+            </div>
+            <div class="col-md-3 form-group">
+                <div><label ><strong>Material (Optional)</strong></label></div>
+                <div><input type="text" id="tool_material" class="form-control" placeholder="Enter tool material"></input></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2 form-group">
+                <div><label ><strong>Width</strong></label></div>
+                <div><input type="number" id="tool_width" class="form-control" min="0" step="1" placeholder="0" required="true"></input></div>
+            </div>
+            <div class="offset-md-1 col-md-2 form-group">
+                <div><label ><strong>Width Fraction</strong></label></div>
+                <div>
+                    <select id="tool_width_fraction" class="form-control fraction-option"></select>
+                </div>
+            </div>
+            <div class="offset-md-1 col-md-2 form-group">
+                <div><label ><strong>Width Unit</strong></label></div>
+                <div>
+                    <select id="tool_width_unit" class="form-control">
+                        <option value="in">inches</option>
+                        <option value="ft">feet</option>
+                    </select>
+                </div>
+            </div>
+            <div class="offset-md-1 col-md-2 form-group">
+                <div><label ><strong>Weight(lbs)</strong></label></div>
+                <div><input type="number" id="tool_weight" class="form-control" min="0" step="0.1" data-number-to-fixed="2" placeholder="0.0" required="true"></input></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2 form-group">
+                <div><label ><strong>Length</strong></label></div>
+                <div><input type="number" id="tool_length" class="form-control" min="0" step="1" placeholder="0" required="true"></input></div>
+            </div>
+            <div class="offset-md-1 col-md-2 form-group">
+                <div><label ><strong>Length Fraction</strong></label></div>
+                <div>
+                    <select id="tool_length_fraction" class="form-control fraction-option">
+                    </select>
+                </div>
+            </div>
+            <div class="offset-md-1 col-md-2 form-group">
+                <div><label ><strong>Length Unit</strong></label></div>
+                <div>
+                    <select id="tool_length_unit" class="form-control">
+                        <option value="in">inches</option>
+                        <option value="ft">feet</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div th:replace="template/tooltemplate :: toolspecification"></div>
+        <div>
+            <div class="col-md-2 mt-4">
+                <button type="submit" class="btn btn-lg btn-primary" id="confirmBtn">Confirm</button>
+            </div>
+        </div>
+
+    </div>
+    </form>
+</div>
+<script type="text/javascript" th:src="@{/js/addtool.js}"></script>
+</body>
+<div th:replace="template/commontemplate :: footer"></div>
+</html>

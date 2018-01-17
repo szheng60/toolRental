@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="toolspecification" id="tool_specification">
+    <div class="row" id="hand_tool_specification">
+        <div class='specification col-md-3 form-group screwdriver-specification hide'>
+            <div><label><strong>Screw-Size</strong></label></div>
+            <div><input id='screwdriver_screw_size' class='form-control' type='number' min='0' step='1' placeholder='0'
+                        pattern='\d+' required="true"></input></div>
+        </div>
+        <div class='specification socket-specification hide col-md-12'>
+            <div class="row">
+                <div class="col-md-3 form-group ">
+                    <div><label><strong>Drive-Size (Inches)</strong></label></div>
+                    <div>
+                        <select id="socket_drive_size" class="form-control fraction-option"></select>
+                    </div>
+                </div>
+                <div class="offset-md-1 col-md-3 form-group ">
+                    <div><label><strong>Sae-Size (Inches)</strong></label></div>
+                    <div>
+                        <select id="socket_sae_size" class="form-control fraction-option"></select>
+                    </div>
+                </div>
+                <div class="offset-md-1 col-md-3 form-group ">
+                    <div><label><strong>Deep-Socket (Optional)</strong></label></div>
+                    <div>
+                        <select id="socket_deep_socket" class="form-control">
+                            <option value="0">--Select One--</option>
+                            <option value="true">True</option>
+                            <option value="false">False</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class='specification col-md-3 form-group ratchet-specification hide'>
+            <div><label><strong>Drive-Size (Inches)</strong></label></div>
+            <div><input id='ratchet_drive_size' class='form-control' type='number' min='0' step='1' placeholder='0'
+                        pattern='\d+'></input></div>
+        </div>
+        <div class='specification form-group pliers-specification hide col-md-3'>
+            <div><label><strong>Adjustable</strong></label></div>
+            <select id="pliers_adjustable" class="form-control required">
+                <option value="true" selected="selected">True</option>
+                <option value="false">False</option>
+            </select>
+        </div>
+        <div class='specification gun-specification hide col-md-12'>
+            <div class="row">
+                <div class="col-md-3 form-group ">
+                    <div><label><strong>Gauge-Rating (Optional)</strong></label></div>
+                    <select id="gun_gauge_rating" class="form-control">
+                        <option value="0">--Select One--</option>
+                        <option value="18">18G</option>
+                        <option value="20">20G</option>
+                        <option value="22">22G</option>
+                        <option value="24">24G</option>
+                    </select>
+                </div>
+                <div class="col-md-3 form-group ">
+                    <div><label><strong>Capacity</strong></label></div>
+                    <div><input id='gun_capacity' class='form-control' type='number' min='0' step='1' placeholder='0'
+                                pattern='\d+' required="true"></input></div>
+                </div>
+            </div>
+        </div>
+        <div class='specification form-group hammer-specification hide col-md-3'>
+            <div><label><strong>Adjustable</strong></label></div>
+            <select id="hammer_anti_vibration" class="form-control">
+                <option value="true" selected="selected">True</option>
+                <option value="false">False</option>
+            </select>
+        </div>
+    </div>
+    <div class="row" id="garden_tool_specification">
+        <div class="specification col-md-3 form-group garden-material-specification hide">
+            <div><label><strong>Handle-Material</strong></label></div>
+            <div><input type="text" id='garden_handle_material' class="form-control" required="true" placeholder="material"></input></div>
+        </div>
+        <div class="specification col-md-12 pruner-specification hide">
+            <div class="row">
+                <div class="col-md-3 form-group">
+                    <div><label><strong>Blade-Material (Optional)</strong></label></div>
+                    <div><input type="text" class="form-control" id="pruner_blade_material"></input></div>
+                </div>
+                <div class="col-md-9">
+                    <div><label><strong>Blade-Length</strong></label></div>
+                    <div class="row">
+                        <div class="col-md-4 form-group">
+                            <input class='form-control' id="pruner_blade_length" type='number' min='0' step='1' placeholder='0'
+                                   pattern='\d+' required="true"></input>
+                        </div>
+                        <div class="col-md-4 form-group">
+                            <select id="pruner_blade_length_fraction" class="form-control fraction-option">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="specification col-md-3 form-group striking-specification hide">
+            <div><label><strong>Head-Weight</strong></label></div>
+            <div><input id="striking_head_weight" type="number" min="0" step="0.1" data-number-to-fixed="2" placeholder="0.0" class="form-control" required="true"></input></div>
+        </div>
+        <div class="specification col-md-12 digger-specification hide">
+            <div class="row">
+                <div class="col-md-9">
+                    <div><label><strong>Blade-Width (Optional)</strong></label></div>
+                    <div class="row">
+                        <div class="col-md-3 form-group">
+                            <input id="digger_blade_width" class='form-control' type='number' min='0' step='1' placeholder='0'
+                                   pattern='\d+'></input>
+                        </div>
+                        <div class="col-md-3 form-group">
+                            <select id="digger_blade_width_fraction" class="form-control fraction-option">
+                                <option value="0">--Select One--</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-9">
+                    <div><label><strong>Blade-Length</strong></label></div>
+                    <div class="row">
+                        <div class="col-md-4 form-group">
+                            <input id="digger_blade_length" class='form-control' type='number' min='0' step='1' placeholder='0'
+                                   pattern='\d+' required="true"></input>
+                        </div>
+                        <div class="col-md-4 form-group">
+                            <select id="digger_blade_length_fraction" class="form-control fraction-option">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="specification col-md-3 form-group rakes-specification hide">
+            <div><label><strong>Tine-Count</strong></label></div>
+            <div><input id="rakes_tine_count" type="number" class="form-control" required="true" placeholder="0" min="0" step="1"></input></div>
+        </div>
+        <div class="specification col-md-12 wheelbarrows-specification hide">
+            <div class="row">
+                <div class="form-group col-md-3">
+                    <div><label><strong>Bin-Material</strong></label></div>
+                    <div><input type="text" id="wheelbarrows_bin_material" class="form-control" required="true" placeholder="material"></input></div>
+                </div>
+                <div class="form-group col-md-3">
+                    <div><label><strong>Bin-Volume (Optional)</strong></label></div>
+                    <div><input id="wheelbarrows_bin_volume" type="number" class="form-control" placeholder="0.0" min="0" step="0.1"></input></div>
+                </div>
+                <div class="form-group col-md-3">
+                    <div><label><strong>Wheel-Count</strong></label></div>
+                    <select id="wheelbarrows_wheel_count" class="form-control">
+                        <option value="1">1 wheeled</option>
+                        <option value="2">2 wheeled</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" id="ladder_tool_specification">
+        <div class="specification col-md-12 ladder-specification hide">
+            <div class="row">
+                <div class="form-group col-md-3">
+                    <div><label><strong>Step-Count (Optional)</strong></label></div>
+                    <div><input id="ladder_step_count" type="number" class="form-control" placeholder="0" min="0" step="1"></input></div>
+                </div>
+                <div class="form-group col-md-3">
+                    <div><label><strong>Weight-Capacity (Optional)</strong></label></div>
+                    <div><input id="ladder_weight_capacity" type="number" class="form-control" placeholder="0.0" min="0" step="0.1"></input></div>
+                </div>
+            </div>
+        </div>
+        <div class="specification col-md-3 form-group straight-specification hide">
+            <div><label><strong>Rubber-Feet (Optional)</strong></label></div>
+            <select id="straight_ladder_rubber_feet" class="form-control">
+                <option value="0">--Select One--</option>
+                <option value="true">True</option>
+                <option value="false">False</option>
+            </select>
+        </div>
+        <div class="specification col-md-3 form-group step-specification hide">
+            <div><label><strong>Pail-Shelf (Optional)</strong></label></div>
+            <select id="step_ladder_pail_shelf" class="form-control">
+                <option value="0">--Select One--</option>
+                <option value="true">True</option>
+                <option value="false">False</option>
+            </select>
+        </div>
+    </div>
+    <div class="row" id="power_tool_specification">
+        <div class="specification col-md-12 power-specification hide mt-4">
+            <div class="row col-md-12">
+                <h4>Power Tools Only</h4>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-3">
+                    <div><label><strong>Volt-Rating</strong></label></div>
+                    <div><input type="number" id="power_volt_rating" class="form-control" placeholder="0.0" min="0" step="1" required="true"></input></div>
+                </div>
+                <div class="form-group col-md-3">
+                    <div><label><strong>Amp-Rating</strong></label></div>
+                    <div><input type="number" id="power_amp_rating" class="form-control" placeholder="0.0" min="0" step="0.1" required="true"></input></div>
+                </div>
+                <div class="form-group col-md-3">
+                    <div><label><strong>Min-RPM-Rating</strong></label></div>
+                    <div><input type="number" id="power_min_rpm_rating" class="form-control" placeholder="0.0" min="0" step="0.1" required="true"></input></div>
+                </div>
+                <div class="form-group col-md-3">
+                    <div><label><strong>Max-RPM-Rating (Optional)</strong></label></div>
+                    <div><input type="number" id=" power_max_rpm_rating" class="form-control" placeholder="0.0" min="0" step="0.1"></input></div>
+                </div>
+            </div>
+        </div>
+        <div class="specification col-md-12 drill-specification hide">
+            <div class="row">
+                <div class="form-group col-md-3">
+                    <div><label><strong>Adjustable-Clutch</strong></label></div>
+                    <select id="drill_adjustable_clutch" class="form-control">
+                        <option value="true">True</option>
+                        <option value="false">False</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <div><label><strong>Min-Torque-Rating</strong></label></div>
+                    <div><input id="drill_min_torque_rating" type="number" class="form-control" placeholder="0.0" min="0" step="0.1" required="true"></input></div>
+                </div>
+                <div class="form-group col-md-3">
+                    <div><label><strong>Max-Torque-Rating (Optional)</strong></label></div>
+                    <div><input id="drill_max_torque_rating" type="number" class="form-control" placeholder="0.0" min="0" step="0.1"></input></div>
+                </div>
+            </div>
+        </div>
+        <div class="specification col-md-12 saw-specification hide">
+            <div class="row">
+                <div class="col-md-9">
+                    <div><label><strong>Blade-Size</strong></label></div>
+                    <div class="row">
+                        <div class="col-md-3 form-group">
+                            <input id="saw_blade_size" class='form-control' type='number' min='0' step='1' placeholder='0'
+                                   pattern='\d+'></input>
+                        </div>
+                        <div class="col-md-3 form-group">
+                            <select id="saw_blade_size_fraction" class="form-control fraction-option">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="specification col-md-3 form-group sander-specification hide">
+            <div><label><strong>Dust-Bag</strong></label></div>
+            <select id="sander_dust_bag" class="form-control">
+                <option value="true">True</option>
+                <option value="false">False</option>
+            </select>
+        </div>
+        <div class="specification col-md-12 aircompressor-specification hide">
+            <div class="row">
+                <div class="form-group col-md-3">
+                    <div><label><strong>Tank-Size (Gallon)</strong></label></div>
+                    <div><input type="number" id="aircompressor_tank_size" class="form-control" placeholder="0.0" min="0" step="0.1" required="true"></input></div>
+                </div>
+                <div class="form-group col-md-3">
+                    <div><label><strong>Pressure-Rating psi (Optional)</strong></label></div>
+                    <div><input type="number" id="aircompressor_pressure_rating" class="form-control" placeholder="0.0" min="0" step="0.1"></input></div>
+                </div>
+            </div>
+        </div>
+        <div class="specification col-md-12 mixer-specification hide">
+            <div class="row">
+                <div class="col-md-9">
+                    <div><label><strong>Motor-Rating HP</strong></label></div>
+                    <div class="row">
+                        <div class="col-md-3 form-group">
+                            <input id="mixer_motor_rating" class='form-control' type='number' min='0' step='1' placeholder='0'
+                                   pattern='\d+' required="true"></input>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <select id="mixer_motor_rating_fraction" class="form-control fraction-option"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-3">
+                    <div><label><strong>Drum-Size cu-ft</strong></label></div>
+                    <div><input type="number" id="mixer_drum_size" class="form-control" placeholder="0.0" min="0" step="0.1" required="true"></input></div>
+                </div>
+            </div>
+        </div>
+        <div class="specification col-md-3 generator-specification hide">
+            <div><label><strong>Power-Rating Watts</strong></label></div>
+            <div><input id="generator_power_rating" type="number" min="0" step="0.1" data-number-to-fixed="2" placeholder="0.0" required="true" class="form-control"></input></div>
+        </div>
+        <div class="specification col-md-12 power-accessories-specification hide">
+            <div class="row power-accessories-row">
+                <div class="form-group col-md-3">
+                    <div><label><strong>Accessories</strong></label></div>
+                    <select class="form-control" id="power_accessories_select">
+                        <option value="drillbits">Drill Bits</option>
+                        <option value="sawblade">Saw Blade</option>
+                        <option value="softcase">Soft Case</option>
+                        <option value="hardcase">Hard Case</option>
+                        <option value="hose">Hose</option>
+                        <option value="gastank">Gas Tank</option>
+                        <option value="safety">Safety</option>
+                        <option value="batterycharger">Battery Charger</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-3 safe hide power_accessories_specific">
+                    <div><label><strong>Safety Options</strong></label></div>
+                    <select class="form-control" id="safety_select">
+                        <option value="hat">Hat</option>
+                        <option value="pants">Pants</option>
+                        <option value="goggles">Goggles</option>
+                        <option value="vest">Vest</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <div><label><strong>Power_Accessories_Quantity</strong></label></div>
+                    <div><input id="accessories_quantity" type="number" min="0" step="1" data-number-to-fixed="2" placeholder="0" required="true" class="form-control"></input></div>
+                </div>
+            </div>
+        </div>
+        <div class="specification col-md-12 power-accessories-specification hide">
+            <div class="row cordless-accessories-row hide mt-4">
+                <div class="row col-md-12">
+                    <h4 class="col-md-6">Cordless Tools Only</h4>
+                </div>
+                <div class="row col-md-12">
+                    <div class="form-group col-md-3 battery battery_accessories_specific">
+                        <div><label><strong>Battery-Type</strong></label></div>
+                        <select class="form-control" id="battery_type">
+                            <option value="Li-Ion">Li-Ion</option>
+                            <option value="NiCd">NiCd</option>
+                            <option value="NiMH">NiMH</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-3 battery battery_accessories_specific">
+                        <div><label><strong>Battery-Rating Volt</strong></label></div>
+                        <select class="form-control" id="battery_rating">
+                            <option value="7.2">7.2</option>
+                            <option value="24">24</option>
+                            <option value="36">36</option>
+                            <option value="80">80</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-3 battery battery_accessories_specific">
+                        <div><label><strong>Battery_Quantity</strong></label></div>
+                        <div><input id="battery_quantity" type="number" min="0" step="1" data-number-to-fixed="2" placeholder="0" required="true" class="form-control"></input></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</html>
